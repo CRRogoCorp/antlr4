@@ -6,6 +6,7 @@
 
 package org.antlr.mojo.antlr4;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.antlr.runtime.tree.Tree;
 import org.antlr.v4.Tool;
 import org.antlr.v4.misc.Graph;
@@ -285,6 +286,7 @@ class GrammarDependencies {
             try {
                 ObjectInputStream in = new ObjectInputStream(new FileInputStream(
                             statusFile));
+                ObjectInputFilters.enableObjectFilterIfUnprotected(in);
 
                 try {
                     @SuppressWarnings("unchecked")
