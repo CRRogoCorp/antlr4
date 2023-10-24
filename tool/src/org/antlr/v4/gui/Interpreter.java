@@ -91,19 +91,19 @@ public class Interpreter {
 			if ( arg.charAt(0)!='-' ) { // input file name
 				inputFileName = arg;
 			}
-			else if ( arg.equals("-tree") ) {
+			else if ( "-tree".equals(arg) ) {
 				printTree = true;
 			}
-			else if ( arg.equals("-gui") ) {
+			else if ( "-gui".equals(arg) ) {
 				gui = true;
 			}
-			else if ( arg.equals("-tokens") ) {
+			else if ( "-tokens".equals(arg) ) {
 				showTokens = true;
 			}
-			else if ( arg.equals("-trace") ) {
+			else if ( "-trace".equals(arg) ) {
 				trace = true;
 			}
-			else if ( arg.equals("-profile") ) {
+			else if ( "-profile".equals(arg) ) {
 				if ( i>=args.length ) {
 					System.err.println("missing CSV filename on -profile (ignoring -profile)");
 					return;
@@ -118,7 +118,7 @@ public class Interpreter {
 				}
 				i++;
 			}
-			else if ( arg.equals("-encoding") ) {
+			else if ( "-encoding".equals(arg) ) {
 				if ( i>=args.length ) {
 					System.err.println("missing encoding on -encoding");
 					return;

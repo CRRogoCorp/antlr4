@@ -459,7 +459,7 @@ public class BasicSemanticChecks extends GrammarTreeVisitor {
 	@Override
 	protected void enterTerminal(GrammarAST tree) {
 		String text = tree.getText();
-		if (text.equals("''")) {
+		if ("''".equals(text)) {
 			g.tool.errMgr.grammarError(ErrorType.EMPTY_STRINGS_AND_SETS_NOT_ALLOWED, g.fileName, tree.token, "''");
 		}
 	}
@@ -494,7 +494,7 @@ public class BasicSemanticChecks extends GrammarTreeVisitor {
 		String optionName = optionID.getText();
 		if (optionName.equals(Grammar.caseInsensitiveOptionName)) {
 			String valueText = valueAST.getText();
-			if (valueText.equals("true") || valueText.equals("false")) {
+			if ("true".equals(valueText) || "false".equals(valueText)) {
 				boolean currentValue = Boolean.parseBoolean(valueText);
 				if (parentType == ANTLRParser.GRAMMAR) {
 					grammarCaseInsensitive = currentValue;
