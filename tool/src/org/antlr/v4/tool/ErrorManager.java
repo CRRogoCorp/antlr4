@@ -61,7 +61,7 @@ public class ErrorManager {
 		}
 		if (msg.fileName != null) {
 			String displayFileName = msg.fileName;
-			if (formatName.equals("antlr")) {
+			if ("antlr".equals(formatName)) {
 				// Don't show path to file in messages in ANTLR format;
 				// they're too long.
 				File f = new File(msg.fileName);
@@ -228,7 +228,7 @@ public class ErrorManager {
 					cl = ErrorManager.class.getClassLoader();
 					url = cl.getResource(fileName);
 				}
-				if (url == null && formatName.equals("antlr")) {
+				if (url == null && "antlr".equals(formatName)) {
 					rawError("ANTLR installation corrupted; cannot find ANTLR messages format file " + fileName);
 					panic();
 				}
@@ -254,7 +254,7 @@ public class ErrorManager {
 		}
 
 		boolean formatOK = verifyFormat();
-		if (!formatOK && formatName.equals("antlr")) {
+		if (!formatOK && "antlr".equals(formatName)) {
 			rawError("ANTLR installation corrupted; ANTLR messages format file " + formatName + ".stg incomplete");
 			panic();
 		}
