@@ -687,14 +687,14 @@ public class LexerATNFactory extends ParserATNFactory {
 
 	private void checkCommands(String command, Token commandToken) {
 		// Command combinations list: https://github.com/antlr/antlr4/issues/1388#issuecomment-263344701
-		if (!command.equals("pushMode") && !command.equals("popMode")) {
+		if (!"pushMode".equals(command) && !"popMode".equals(command)) {
 			if (ruleCommands.contains(command)) {
 				g.tool.errMgr.grammarError(ErrorType.DUPLICATED_COMMAND, g.fileName, commandToken, command);
 			}
 
 			String firstCommand = null;
 
-			if (command.equals("skip")) {
+			if ("skip".equals(command)) {
 				if (ruleCommands.contains("more")) {
 					firstCommand = "more";
 				}
@@ -705,7 +705,7 @@ public class LexerATNFactory extends ParserATNFactory {
 					firstCommand = "channel";
 				}
 			}
-			else if (command.equals("more")) {
+			else if ("more".equals(command)) {
 				if (ruleCommands.contains("skip")) {
 					firstCommand = "skip";
 				}
@@ -716,7 +716,7 @@ public class LexerATNFactory extends ParserATNFactory {
 					firstCommand = "channel";
 				}
 			}
-			else if (command.equals("type") || command.equals("channel")) {
+			else if ("type".equals(command) || "channel".equals(command)) {
 				if (ruleCommands.contains("more")) {
 					firstCommand = "more";
 				}
@@ -738,7 +738,7 @@ public class LexerATNFactory extends ParserATNFactory {
 			return null;
 		}
 
-		if (modeName.equals("DEFAULT_MODE")) {
+		if ("DEFAULT_MODE".equals(modeName)) {
 			return Lexer.DEFAULT_MODE;
 		}
 		if (COMMON_CONSTANTS.containsKey(modeName)) {
@@ -765,7 +765,7 @@ public class LexerATNFactory extends ParserATNFactory {
 			return null;
 		}
 
-		if (tokenName.equals("EOF")) {
+		if ("EOF".equals(tokenName)) {
 			return Lexer.EOF;
 		}
 		if (COMMON_CONSTANTS.containsKey(tokenName)) {
@@ -791,10 +791,10 @@ public class LexerATNFactory extends ParserATNFactory {
 			return null;
 		}
 
-		if (channelName.equals("HIDDEN")) {
+		if ("HIDDEN".equals(channelName)) {
 			return Lexer.HIDDEN;
 		}
-		if (channelName.equals("DEFAULT_TOKEN_CHANNEL")) {
+		if ("DEFAULT_TOKEN_CHANNEL".equals(channelName)) {
 			return Lexer.DEFAULT_TOKEN_CHANNEL;
 		}
 		if (COMMON_CONSTANTS.containsKey(channelName)) {

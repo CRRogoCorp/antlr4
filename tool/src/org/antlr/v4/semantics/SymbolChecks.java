@@ -312,7 +312,7 @@ public class SymbolChecks {
 		if (g.isLexer()) {
 			LexerGrammar lexerGrammar = (LexerGrammar)g;
 			for (String modeName : lexerGrammar.modes.keySet()) {
-				if (!modeName.equals("DEFAULT_MODE") && reservedNames.contains(modeName)) {
+				if (!"DEFAULT_MODE".equals(modeName) && reservedNames.contains(modeName)) {
 					Rule rule = lexerGrammar.modes.get(modeName).iterator().next();
 					g.tool.errMgr.grammarError(ErrorType.MODE_CONFLICTS_WITH_COMMON_CONSTANTS, g.fileName, rule.ast.parent.getToken(), modeName);
 				}

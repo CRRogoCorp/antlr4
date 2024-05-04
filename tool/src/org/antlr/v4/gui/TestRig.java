@@ -76,25 +76,25 @@ public class TestRig {
 				inputFiles.add(arg);
 				continue;
 			}
-			if ( arg.equals("-tree") ) {
+			if ( "-tree".equals(arg) ) {
 				printTree = true;
 			}
-			if ( arg.equals("-gui") ) {
+			if ( "-gui".equals(arg) ) {
 				gui = true;
 			}
-			if ( arg.equals("-tokens") ) {
+			if ( "-tokens".equals(arg) ) {
 				showTokens = true;
 			}
-			else if ( arg.equals("-trace") ) {
+			else if ( "-trace".equals(arg) ) {
 				trace = true;
 			}
-			else if ( arg.equals("-SLL") ) {
+			else if ( "-SLL".equals(arg) ) {
 				SLL = true;
 			}
-			else if ( arg.equals("-diagnostics") ) {
+			else if ( "-diagnostics".equals(arg) ) {
 				diagnostics = true;
 			}
-			else if ( arg.equals("-encoding") ) {
+			else if ( "-encoding".equals(arg) ) {
 				if ( i>=args.length ) {
 					System.err.println("missing encoding on -encoding");
 					return;
@@ -102,7 +102,7 @@ public class TestRig {
 				encoding = args[i];
 				i++;
 			}
-			else if ( arg.equals("-ps") ) {
+			else if ( "-ps".equals(arg) ) {
 				if ( i>=args.length ) {
 					System.err.println("missing filename on -ps");
 					return;
@@ -145,7 +145,7 @@ public class TestRig {
 
 		Class<? extends Parser> parserClass = null;
 		Parser parser = null;
-		if ( !startRuleName.equals(LEXER_START_RULE_NAME) ) {
+		if ( !LEXER_START_RULE_NAME.equals(startRuleName) ) {
 			String parserName = grammarName+"Parser";
 			parserClass = cl.loadClass(parserName).asSubclass(Parser.class);
 			Constructor<? extends Parser> parserCtor = parserClass.getConstructor(TokenStream.class);
@@ -184,7 +184,7 @@ public class TestRig {
 				}
 			}
 
-			if ( startRuleName.equals(LEXER_START_RULE_NAME) ) return;
+			if ( LEXER_START_RULE_NAME.equals(startRuleName) ) return;
 
 			if ( diagnostics ) {
 				parser.addErrorListener(new DiagnosticErrorListener());

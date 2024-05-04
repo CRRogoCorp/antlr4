@@ -132,7 +132,7 @@ public class RuleCollector extends GrammarTreeVisitor {
 		String optionName = optionID.getText();
 		if (optionName.equals(Grammar.caseInsensitiveOptionName)) {
 			String valueText = valueAST.getText();
-			if (valueText.equals("true") || valueText.equals("false")) {
+			if ("true".equals(valueText) || "false".equals(valueText)) {
 				return Boolean.parseBoolean(valueText);
 			}
 		}
