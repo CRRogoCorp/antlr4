@@ -63,31 +63,31 @@ public class InterpreterDataReader {
 		  	List<String> symbolicNames = new ArrayList<String>();
 
 			line = BoundedLineReader.readLine(br, 5_000_000);
-			if ( !line.equals("token literal names:") )
+			if ( !"token literal names:".equals(line) )
 				{
 				    throw new RuntimeException("Unexpected data entry");
 				}
 		    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
 		       if ( line.isEmpty() )
 					break;
-				literalNames.add(line.equals("null") ? "" : line);
+				literalNames.add("null".equals(line) ? "" : line);
 		    }
 
 			line = BoundedLineReader.readLine(br, 5_000_000);
-			if ( !line.equals("token symbolic names:") )
+			if ( !"token symbolic names:".equals(line) )
 				{
 				    throw new RuntimeException("Unexpected data entry");
 				}
 		    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
 		       if ( line.isEmpty() )
 					break;
-				symbolicNames.add(line.equals("null") ? "" : line);
+				symbolicNames.add("null".equals(line) ? "" : line);
 		    }
 
 		  	result.vocabulary = new VocabularyImpl(literalNames.toArray(new String[0]), symbolicNames.toArray(new String[0]));
 
 			line = BoundedLineReader.readLine(br, 5_000_000);
-			if ( !line.equals("rule names:") )
+			if ( !"rule names:".equals(line) )
 				{
 				    throw new RuntimeException("Unexpected data entry");
 				}
@@ -98,7 +98,7 @@ public class InterpreterDataReader {
 		    }
 
 			line = BoundedLineReader.readLine(br, 5_000_000);
-			if ( line.equals("channel names:") ) { // Additional lexer data.
+			if ( "channel names:".equals(line) ) { // Additional lexer data.
 				result.channels = new ArrayList<String>();
 			    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
 			       if ( line.isEmpty() )
@@ -107,7 +107,7 @@ public class InterpreterDataReader {
 			    }
 
 				line = BoundedLineReader.readLine(br, 5_000_000);
-				if ( !line.equals("mode names:") )
+				if ( !"mode names:".equals(line) )
 					throw new RuntimeException("Unexpected data entry");
 				result.modes = new ArrayList<String>();
 			    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
@@ -118,7 +118,7 @@ public class InterpreterDataReader {
 			}
 
 		  	line = BoundedLineReader.readLine(br, 5_000_000);
-		  	if ( !line.equals("atn:") )
+		  	if ( !"atn:".equals(line) )
 		  		throw new RuntimeException("Unexpected data entry");
 			line = BoundedLineReader.readLine(br, 5_000_000);
 			String[] elements = line.substring(1,line.length()-1).split(",");
