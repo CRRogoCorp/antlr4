@@ -6,6 +6,7 @@
 
 package org.antlr.v4.runtime.misc;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.antlr.v4.runtime.Vocabulary;
 import org.antlr.v4.runtime.VocabularyImpl;
 import org.antlr.v4.runtime.atn.ATN;
@@ -61,65 +62,65 @@ public class InterpreterDataReader {
 		  	List<String> literalNames = new ArrayList<String>();
 		  	List<String> symbolicNames = new ArrayList<String>();
 
-			line = br.readLine();
-			if ( !line.equals("token literal names:") )
+			line = BoundedLineReader.readLine(br, 5_000_000);
+			if ( !"token literal names:".equals(line) )
 				{
 				    throw new RuntimeException("Unexpected data entry");
 				}
-		    while ((line = br.readLine()) != null) {
+		    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
 		       if ( line.isEmpty() )
 					break;
-				literalNames.add(line.equals("null") ? "" : line);
+				literalNames.add("null".equals(line) ? "" : line);
 		    }
 
-			line = br.readLine();
-			if ( !line.equals("token symbolic names:") )
+			line = BoundedLineReader.readLine(br, 5_000_000);
+			if ( !"token symbolic names:".equals(line) )
 				{
 				    throw new RuntimeException("Unexpected data entry");
 				}
-		    while ((line = br.readLine()) != null) {
+		    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
 		       if ( line.isEmpty() )
 					break;
-				symbolicNames.add(line.equals("null") ? "" : line);
+				symbolicNames.add("null".equals(line) ? "" : line);
 		    }
 
 		  	result.vocabulary = new VocabularyImpl(literalNames.toArray(new String[0]), symbolicNames.toArray(new String[0]));
 
-			line = br.readLine();
-			if ( !line.equals("rule names:") )
+			line = BoundedLineReader.readLine(br, 5_000_000);
+			if ( !"rule names:".equals(line) )
 				{
 				    throw new RuntimeException("Unexpected data entry");
 				}
-		    while ((line = br.readLine()) != null) {
+		    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
 		       if ( line.isEmpty() )
 					break;
 				result.ruleNames.add(line);
 		    }
 
-			line = br.readLine();
-			if ( line.equals("channel names:") ) { // Additional lexer data.
+			line = BoundedLineReader.readLine(br, 5_000_000);
+			if ( "channel names:".equals(line) ) { // Additional lexer data.
 				result.channels = new ArrayList<String>();
-			    while ((line = br.readLine()) != null) {
+			    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
 			       if ( line.isEmpty() )
 						break;
 					result.channels.add(line);
 			    }
 
-				line = br.readLine();
-				if ( !line.equals("mode names:") )
+				line = BoundedLineReader.readLine(br, 5_000_000);
+				if ( !"mode names:".equals(line) )
 					throw new RuntimeException("Unexpected data entry");
 				result.modes = new ArrayList<String>();
-			    while ((line = br.readLine()) != null) {
+			    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
 			       if ( line.isEmpty() )
 						break;
 					result.modes.add(line);
 			    }
 			}
 
-		  	line = br.readLine();
-		  	if ( !line.equals("atn:") )
+		  	line = BoundedLineReader.readLine(br, 5_000_000);
+		  	if ( !"atn:".equals(line) )
 		  		throw new RuntimeException("Unexpected data entry");
-			line = br.readLine();
+			line = BoundedLineReader.readLine(br, 5_000_000);
 			String[] elements = line.substring(1,line.length()-1).split(",");
 	  		int[] serializedATN = new int[elements.length];
 
