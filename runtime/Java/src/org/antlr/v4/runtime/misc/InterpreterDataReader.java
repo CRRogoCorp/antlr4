@@ -63,7 +63,9 @@ public class InterpreterDataReader {
 
 			line = br.readLine();
 			if ( !line.equals("token literal names:") )
-				throw new RuntimeException("Unexpected data entry");
+				{
+				    throw new RuntimeException("Unexpected data entry");
+				}
 		    while ((line = br.readLine()) != null) {
 		       if ( line.isEmpty() )
 					break;
@@ -72,7 +74,9 @@ public class InterpreterDataReader {
 
 			line = br.readLine();
 			if ( !line.equals("token symbolic names:") )
-				throw new RuntimeException("Unexpected data entry");
+				{
+				    throw new RuntimeException("Unexpected data entry");
+				}
 		    while ((line = br.readLine()) != null) {
 		       if ( line.isEmpty() )
 					break;
@@ -83,7 +87,9 @@ public class InterpreterDataReader {
 
 			line = br.readLine();
 			if ( !line.equals("rule names:") )
-				throw new RuntimeException("Unexpected data entry");
+				{
+				    throw new RuntimeException("Unexpected data entry");
+				}
 		    while ((line = br.readLine()) != null) {
 		       if ( line.isEmpty() )
 					break;

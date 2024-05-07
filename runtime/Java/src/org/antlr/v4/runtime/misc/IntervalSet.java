@@ -530,7 +530,9 @@ public class IntervalSet implements IntSet {
 			}
 			else {
 				for (int i=a; i<=b; i++) {
-					if ( i>a ) buf.append(", ");
+					if ( i>a ) {
+					    buf.append(", ");
+					}
                     buf.append(elementName(vocabulary, i));
 				}
 			}
