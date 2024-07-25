@@ -102,6 +102,7 @@
 		<antlr.testinprocess>true</antlr.testinprocess>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
+		<versions.java-security-toolkit>1.2.0</versions.java-security-toolkit>
 	</properties>
 
 	<mailingLists>
@@ -178,4 +179,14 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.github.pixee</groupId>
+				<artifactId>java-security-toolkit</artifactId>
+				
+				<version>${versions.java-security-toolkit}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
