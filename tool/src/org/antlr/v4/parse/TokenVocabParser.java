@@ -6,6 +6,7 @@
 
 package org.antlr.v4.parse;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.antlr.runtime.Token;
 import org.antlr.v4.Tool;
 import org.antlr.v4.codegen.CodeGenerator;
@@ -53,7 +54,7 @@ public class TokenVocabParser {
 			}
 
 			br = new BufferedReader(isr);
-			String tokenDef = br.readLine();
+			String tokenDef = BoundedLineReader.readLine(br, 5_000_000);
 			int lineNum = 1;
 			while ( tokenDef!=null ) {
 				Matcher matcher = tokenDefPattern.matcher(tokenDef);
@@ -84,7 +85,7 @@ public class TokenVocabParser {
 											  lineNum);
 					}
 				}
-				tokenDef = br.readLine();
+				tokenDef = BoundedLineReader.readLine(br, 5_000_000);
 			}
 		}
 		catch (FileNotFoundException fnfe) {
