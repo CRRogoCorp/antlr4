@@ -6,6 +6,7 @@
 
 package org.antlr.v4.gui;
 
+import java.nio.file.Files;
 import org.abego.treelayout.NodeExtentProvider;
 import org.abego.treelayout.TreeForTreeLayout;
 import org.abego.treelayout.TreeLayout;
@@ -561,7 +562,7 @@ public class TreeViewer extends JComponent {
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
 				File svgFile = fileChooser.getSelectedFile();
 				// save the new svg file here!
-				BufferedWriter writer = new BufferedWriter(new FileWriter(svgFile));
+				BufferedWriter writer = Files.newBufferedWriter(svgFile.toPath());
 				// HACK: multiplying with 1.1 should be replaced wit an accurate number
 				writer.write("<svg width=\"" + viewer.getSize().getWidth() * 1.1 + "\" height=\"" + viewer.getSize().getHeight() * 1.1 + "\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">");
 				viewer.paintSVG(writer);
